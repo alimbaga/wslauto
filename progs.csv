@@ -1,7 +1,6 @@
 #TAG,NAME IN REPO (or git url),PURPOSE (should be a verb phrase to sound right while installing)
-,zsh, "is a productivity booster of a shell"
-,fzf,"is a fuzzy finder tool."
+,zsh,"is a productivity booster of a shell"
 ,neovim,"a tidier vim with some useful features"
 ,tmux,"a terminal multiplexer for those who live and breath in the terminal"
 ,ack,"designed to be used specifically when searching source code"
-
+,zsh-syntax-highlighting,"color identifiers for valid and invalid shell commands"

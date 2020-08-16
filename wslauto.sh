@@ -25,6 +25,12 @@ grepseq="\"^[PGU]*,\""
 
 error() { clear; printf "ERROR:\\n%s\\n" "$1"; exit;}
 
+welcomemsg() { \
+	dialog --title "Welcome!" --msgbox "Welcome to WSL Auto script!" 10 60
+
+	dialog --colors --title "Important Note!" --yes-label "All ready!" --no-label "Return..." --yesno "Be sure you have sudo access.\\n\\nIf not, the installation of some programs might fail." 8 70
+	}
+
 maininstall() { # Installs all needed programs from main repo.
 	dialog --title "Auto Installation" --infobox "Installing \`$1\` ($n of $total). $1 $2" 5 70
 	installpkg "$1"
@@ -62,7 +68,7 @@ installationloop() { \
 	done < /tmp/progs.csv ;
 }
 
-putgitrepo() { 
+putgitrepo() {
 	# Downloads a gitrepo $1 and places the files in $2 only overwriting conflicts
 	dialog --infobox "Downloading and installing config files..." 4 60
 	[ -z "$3" ] && branch="master" || branch="$repobranch"
@@ -73,11 +79,17 @@ putgitrepo() {
 	sudo -u "$(whoami)" cp -rfT "$dir" "$2"
 }
 
+finalize() { \
+	dialog --infobox "Preparing welcome message..." 4 50
+	dialog --title "All done!" --msgbox "Congrats! Provided there were no hidden errors, the script completed successfully and all the programs and configuration files should be in place.\\n\\nTo run the new graphical environment, restart your terminal.\\n\\n" 12 80
+	}
 ### THE ACTUAL SCRIPT ###
 
 ### This is how everything happens in an intuitive format and order.
 
 sudo apt update && sudo apt upgrade || error "Could not update and upgrade system"
+
+welcomemsg
 
 # Check if user is root on Arch distro. Install dialog.
 installpkg dialog || error "Could not install dialog :("
@@ -105,5 +117,7 @@ git update-index --assume-unchanged "/home/$(whoami)/LICENSE"
 
 # Make zsh the default shell for the user.
 sed -i "s/^$(whoami):\(.*\):\/bin\/\S*/$(whoami):\1:\/bin\/zsh/" /etc/passwd
+
+finalize
 
 clear
