@@ -5,3 +5,4 @@
 ,ack,"designed to be used specifically when searching source code"
 ,zsh-syntax-highlighting,"color identifiers for valid and invalid shell commands"
 ,shellcheck,"static analysis tool on shell scripts"
+,fzf,"fuzzy finder for EVERYTHING"

@@ -74,7 +74,7 @@ putgitrepo() {
     [ -z "$3" ] && branch="master" || branch="$repobranch"
     dir=$(mktemp -d)
     [ ! -d "$2" ] && mkdir -p "$2"
-    chown -R "$(whoami)":wheel "$dir" "$2"
+    sudo chown -R "$(whoami)" "$dir" "$2"
     sudo -u "$(whoami)" git clone --recursive -b "$branch" --depth 1 "$1" "$dir" >/dev/null 2>&1
     sudo -u "$(whoami)" cp -rfT "$dir" "$2"
 }
