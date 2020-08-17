@@ -4,3 +4,4 @@
 ,tmux,"a terminal multiplexer for those who live and breath in the terminal"
 ,ack,"designed to be used specifically when searching source code"
 ,zsh-syntax-highlighting,"color identifiers for valid and invalid shell commands"
+,shellcheck,"static analysis tool on shell scripts"
