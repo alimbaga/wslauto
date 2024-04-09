@@ -12,7 +12,7 @@ while getopts ":a:r:b:p:h" o; do case "${o}" in
     *) printf "Invalid option: -%s\\n" "$OPTARG" && exit ;;
 esac done
 
-[ -z "$dotfilesrepo" ] && dotfilesrepo="https://github.com/alimbaga/wsldotfiles.git"
+[ -z "$dotfilesrepo" ] && dotfilesrepo="https://github.com/alimbaga/dotfiles.git"
 [ -z "$progsfile" ] && progsfile="https://raw.githubusercontent.com/alimbaga/wslauto/master/progs.csv"
 [ -z "$repobranch" ] && repobranch="master"
 
